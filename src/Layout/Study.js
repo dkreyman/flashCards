@@ -15,7 +15,6 @@ function Study({ decks }) {
     }
   };
   const [cardNum, setCardNum] = useState(0);
-  console.log(cardNum, deck[0]["cards"].length);
   const handleNext = () => {
     if (cardNum + 1 < deck[0]["cards"].length) {
       setCardNum(cardNum + 1);
@@ -27,6 +26,21 @@ function Study({ decks }) {
   return (
     <>
       {/* TODO: Implement the screen starting here */}
+      <div className="container">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item">
+              <a href="/">Home</a>
+            </li>
+            <li class="breadcrumb-item">
+              <a href="#">{deck[0]["name"]}</a>
+            </li>
+            <li class="breadcrumb-item active" aria-current="page">
+              Study
+            </li>
+          </ol>
+        </nav>
+      </div>
       {deck.map((deck) => {
         return (
           <div className="container">
