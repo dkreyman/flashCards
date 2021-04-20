@@ -47,7 +47,7 @@ function Layout({ decks }) {
                     <Link
                       to="/decks/:deckId/study"
                       type="button"
-                      className="btn btn-primary btn-md justify-content-end"
+                      className="btn btn-danger btn-md justify-content-end"
                     >
                       Delete
                     </Link>
