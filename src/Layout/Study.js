@@ -7,6 +7,12 @@ function Study({ decks }) {
     return deck.id.toString() === deckId;
   });
   const [side, setSide] = useState("front");
+  let nextDisplay;
+  if (side === "front") {
+    nextDisplay = "none";
+  } else {
+    nextDisplay = "inline";
+  }
   const handleFlip = () => {
     if (side === "front") {
       setSide("back");
@@ -19,12 +25,14 @@ function Study({ decks }) {
   const handleNext = () => {
     if (cardNum + 1 < deck[0]["cards"].length) {
       setCardNum(cardNum + 1);
+      setSide("front");
     } else {
       let confirmed = window.confirm(
         "Restart Cards? Press Cancel To Return Home"
       );
       if (confirmed === true) {
         setCardNum(0);
+        setSide("front");
       } else {
         history.push("/");
       }
@@ -75,6 +83,7 @@ function Study({ decks }) {
                     type="button"
                     className="btn btn-secondary btn-md m-2"
                     onClick={handleNext}
+                    style={{ display: nextDisplay }}
                   >
                     Next
                   </button>
