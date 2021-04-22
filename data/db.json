@@ -21,6 +21,18 @@
       "front": "dsahfkldahsds",
       "back": "",
       "id": 4
+    },
+    {
+      "front": "2",
+      "back": "2c",
+      "deckId": 2,
+      "id": 6
+    },
+    {
+      "front": "3",
+      "back": "3v",
+      "deckId": 2,
+      "id": 7
     }
   ]
 }

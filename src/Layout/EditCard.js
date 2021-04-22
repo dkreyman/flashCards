@@ -9,7 +9,6 @@ function EditCard() {
   const initialFormState = {
     front: "",
     back: "",
-    id: { cardId },
   };
   const [formData, setFormData] = useState({ ...initialFormState });
   useEffect(() => {
@@ -24,7 +23,6 @@ function EditCard() {
     setFormData({
       ...formData,
       [target.name]: target.value,
-      id: cardId,
     });
   };
   const history = useHistory();
