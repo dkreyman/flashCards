@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from "./Header";
-import { Link, useHistory } from "react-router-dom";
-import { deleteDeck } from "../utils/api/index";
+import { Link } from "react-router-dom";
+import { deleteDeck, listDecks } from "../utils/api/index";
 
-function Layout({ decks }) {
-  const history = useHistory();
-  const handleDelete = () => {
-    // deleteDeck(id);
-    console.log(this);
-    // history.push("/");
+function Layout() {
+  const handleDelete = (id) => {
+    deleteDeck(id);
   };
+  const [decks, setDecks] = useState([]);
+  useEffect(() => {
+    listDecks().then((value) => {
+      setDecks(value);
+    });
+  }, [decks]);
   return (
     <>
       <Header />
@@ -52,10 +55,9 @@ function Layout({ decks }) {
                   </div>
                   <div className="ml-auto p-2">
                     <button
-                      to="/decks/:deckId/study"
                       type="button"
                       className="btn btn-danger btn-md justify-content-end"
-                      onClick={handleDelete()}
+                      onClick={() => handleDelete(deck.id)}
                     >
                       Delete
                     </button>

@@ -6,37 +6,38 @@ import Study from "./Layout/Study";
 import DeckOverview from "./Layout/DeckOverview";
 import { listDecks } from "./utils/api/index";
 import NewDeck from "./Layout/NewDeck";
+import EditDeck from "./Layout/EditDeck";
 import AddCard from "./Layout/AddCard";
+import EditCard from "./Layout/EditCard";
 
 /**
  * App is a wrapper for <Layout>, you should not need to change this file.
  */
 
 function App() {
-  const [decks, setDecks] = useState([]);
-  useEffect(() => {
-    listDecks().then((value) => {
-      setDecks(value);
-    });
-  }, []);
-
   return (
     <div className="app-routes">
       <Switch>
         <Route exact path="/">
-          <Layout decks={decks} />
+          <Layout />
         </Route>
         <Route exact path="/decks/new">
           <NewDeck />
         </Route>
+        <Route exact path="/decks/:deckId/edit">
+          <EditDeck />
+        </Route>
         <Route exact path="/decks/:deckId">
-          <DeckOverview decks={decks} />
+          <DeckOverview />
         </Route>
         <Route exact path="/decks/:deckId/study">
-          <Study decks={decks} />
+          <Study />
         </Route>
         <Route path="/decks/:deckId/cards/new">
-          <AddCard decks={decks} />
+          <AddCard />
+        </Route>
+        <Route path="/decks/:deckId/cards/:cardId/edit">
+          <EditCard />
         </Route>
         <Route>
           <NotFound />

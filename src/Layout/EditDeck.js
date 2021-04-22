@@ -1,9 +1,15 @@
-import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { createDeck } from "../utils/api/index";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory, useParams } from "react-router-dom";
+import { updateDeck, readDeck } from "../utils/api/index";
 import Header from "./Header";
 
-function NewDeck() {
+function EditDeck() {
+  const { deckId } = useParams();
+  useEffect(() => {
+    readDeck(deckId).then((value) => {
+      setFormData(value);
+    });
+  }, []);
   const initialFormState = {
     name: "",
     description: "",
@@ -18,8 +24,8 @@ function NewDeck() {
   const history = useHistory();
   const handleSubmit = (event) => {
     event.preventDefault();
-    history.push("/");
-    createDeck(formData);
+    history.go(-1);
+    updateDeck(formData);
 
     setFormData({ ...initialFormState });
   };
@@ -33,11 +39,11 @@ function NewDeck() {
               <a href="/">Home</a>
             </li>
             <li class="breadcrumb-item active" aria-current="page">
-              Create Deck
+              Edit Deck
             </li>
           </ol>
         </nav>
-        <h1>Create Deck</h1>
+        <h1>Edit Deck</h1>
       </div>
       <div className="container">
         <form onSubmit={handleSubmit}>
@@ -49,7 +55,6 @@ function NewDeck() {
                 id="name"
                 type="text"
                 name="name"
-                placeholder="Deck Name"
                 onChange={handleChange}
                 value={formData.name}
               />
@@ -63,14 +68,17 @@ function NewDeck() {
                 id="description"
                 type="text"
                 name="description"
-                placeholder="Brief description of the deck"
                 onChange={handleChange}
                 value={formData.description}
               />
             </label>
           </div>
           <br />
-          <Link type="button" className="btn btn-secondary btn-md mr-2" to="/">
+          <Link
+            type="button"
+            className="btn btn-secondary btn-md mr-2"
+            to={`/decks/${deckId}`}
+          >
             Cancel
           </Link>
           <button className="btn btn-primary btn-md" type="submit">
@@ -82,4 +90,4 @@ function NewDeck() {
   );
 }
 
-export default NewDeck;
+export default EditDeck;

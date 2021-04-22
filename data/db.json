@@ -1,15 +1,20 @@
 {
-  "decks": [
+  "decks": [],
+  "cards": [
     {
-      "name": "Deck Name",
-      "description": "Brief description of the deck",
-      "id": 1
+      "front": "this is it",
+      "back": "",
+      "id": 2
     },
     {
-      "name": "Deck Name",
-      "description": "Brief description of the deck",
-      "id": 2
+      "front": "this is it",
+      "back": "Mouse",
+      "id": 3
+    },
+    {
+      "front": "dsahfkldahsds",
+      "back": "",
+      "id": 4
     }
-  ],
-  "cards": []
+  ]
 }

@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, useHistory, useParams } from "react-router-dom";
-import { createCard } from "../utils/api/index";
+import { createCard, readDeck } from "../utils/api/index";
 import Header from "./Header";
 
-function AddCard({ decks }) {
+function AddCard() {
   const { deckId } = useParams();
-  const deck = decks.filter((deck) => {
-    return deck.id.toString() === deckId;
-  });
+  const [deck, setDeck] = useState([]);
+  useEffect(() => {
+    readDeck(deckId).then((value) => {
+      setDeck(value);
+    });
+  }, []);
   const initialFormState = {
-    front: "Front side of card",
-    back: "Back side of card",
+    front: "",
+    back: "",
   };
   const [formData, setFormData] = useState({ ...initialFormState });
   const handleChange = ({ target }) => {
@@ -35,13 +38,13 @@ function AddCard({ decks }) {
             <li class="breadcrumb-item">
               <a href="/">Home</a>
             </li>
-            <li class="breadcrumb-item active">{deck[0]["name"]}</li>
+            <li class="breadcrumb-item active">{deck["name"]}</li>
             <li class="breadcrumb-item active" aria-current="page">
               Add Card
             </li>
           </ol>
         </nav>
-        <h1>Create Card for {deck[0]["name"]}</h1>
+        <h1>Create Card for {deck["name"]}</h1>
       </div>
       <div className="container">
         <form onSubmit={handleSubmit}>
@@ -53,6 +56,7 @@ function AddCard({ decks }) {
                 id="front"
                 type="text"
                 name="front"
+                placeholder="Front side of card"
                 onChange={handleChange}
                 value={formData.front}
               />
@@ -66,6 +70,7 @@ function AddCard({ decks }) {
                 id="back"
                 type="text"
                 name="back"
+                placeholder="Back side of card"
                 onChange={handleChange}
                 value={formData.back}
               />
