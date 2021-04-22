@@ -27,11 +27,11 @@ function Layout() {
         </Link>
         {decks.map((deck) => {
           return (
-            <div className="card mt-2">
+            <div key={deck["cards"]["id"]} className="card mt-2">
               <div className="card-body">
-                <h8 className="float-right mb-0 d-inline-block">
-                  {deck["cards"].length} Cards
-                </h8>
+                <h6 className="float-right mb-0 d-inline-block">
+                  {deck["cards"].length} cards
+                </h6>
                 <h3>{deck.name}</h3>
                 <p>{deck.description}</p>
                 <div className="d-flex">

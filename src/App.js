@@ -1,10 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Layout from "./Layout";
 import NotFound from "./Layout/NotFound";
 import Study from "./Layout/Study";
 import DeckOverview from "./Layout/DeckOverview";
-import { listDecks } from "./utils/api/index";
 import NewDeck from "./Layout/NewDeck";
 import EditDeck from "./Layout/EditDeck";
 import AddCard from "./Layout/AddCard";

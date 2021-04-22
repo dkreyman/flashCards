@@ -51,14 +51,14 @@ function Study() {
         {/* TODO: Implement the screen starting here */}
         <div className="container">
           <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-              <li class="breadcrumb-item">
+            <ol className="breadcrumb">
+              <li className="breadcrumb-item">
                 <a href="/">Home</a>
               </li>
-              <li class="breadcrumb-item">
+              <li className="breadcrumb-item">
                 <a href={`/decks/${deck.id}`}>{deck["name"]}</a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">
+              <li className="breadcrumb-item active" aria-current="page">
                 Study
               </li>
             </ol>
@@ -66,8 +66,8 @@ function Study() {
         </div>
         <div className="container">
           <h1>{deck["name"]}: Study</h1>
-          <div class="card mt-2 pt-3">
-            <div class="card-body">
+          <div className="card mt-2 pt-3">
+            <div className="card-body">
               <h4>
                 Card {cardNum + 1} of {deck["cards"].length}
               </h4>
@@ -82,15 +82,17 @@ function Study() {
               >
                 Flip
               </button>
-              <button
-                to="/decks/:deckId"
-                type="button"
-                className="btn btn-secondary btn-md m-2"
-                onClick={handleNext}
-                style={{ display: nextDisplay }}
-              >
-                Next
-              </button>
+              {nextDisplay === "inline" && (
+                <button
+                  to="/decks/:deckId"
+                  type="button"
+                  className="btn btn-secondary btn-md m-2"
+                  onClick={handleNext}
+                  style={{ display: nextDisplay }}
+                >
+                  Next
+                </button>
+              )}
             </div>
           </div>
         </div>
@@ -100,14 +102,14 @@ function Study() {
     return (
       <div className="container">
         <nav aria-label="breadcrumb">
-          <ol class="breadcrumb">
-            <li class="breadcrumb-item">
+          <ol className="breadcrumb">
+            <li className="breadcrumb-item">
               <a href="/">Home</a>
             </li>
-            <li class="breadcrumb-item">
-              <a href="#">{deck["name"]}</a>
+            <li className="breadcrumb-item">
+              <a href={`/decks/${deck.id}`}>{deck["name"]}</a>
             </li>
-            <li class="breadcrumb-item active" aria-current="page">
+            <li className="breadcrumb-item active" aria-current="page">
               Study
             </li>
           </ol>
