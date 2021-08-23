@@ -1,6 +1,4 @@
-## Demo [Link](https://flash-cards-eta.vercel.app/)
-
-A front-end for a flashcard study app!
+## A front-end for a flashcard study app!
 
 ## Tools
 
